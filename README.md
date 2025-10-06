@@ -1,20 +1,12 @@
-Of course. Here is a professional `README.md` file for your GitHub repository, created by synthesizing the information from your project files and the provided documentation.
-
------
-
 # Marketing Multi-Agent System
 
-[](https://www.google.com/search?q=https://github.com/your-username/marketing-multi-agent-system/actions)
-[](https://www.google.com/search?q=https://codecov.io/gh/your-username/marketing-multi-agent-system)
-[](https://opensource.org/licenses/MIT)
+This repository contains the source code for a sophisticated, AI-driven Marketing Multi-Agent System. The system is designed to automate and optimize lead management and campaign execution through the collaboration of three specialized agents.
 
-This repository contains the source code for a sophisticated, AI-driven Marketing Multi-Agent System. [cite\_start]The system is designed to automate and optimize lead management and campaign execution through the collaboration of three specialized agents[cite: 15].
-
-[cite\_start]The architecture is built on a robust, asynchronous Python framework using FastAPI[cite: 16, 65]. [cite\_start]All inter-agent communication is facilitated by a central Model Context Protocol (MCP) Server that implements the JSON-RPC 2.0 protocol over both HTTP and WebSocket transport layers[cite: 17]. [cite\_start]A key feature is the adaptive memory architecture, which leverages a polyglot persistence strategy (PostgreSQL, Redis, Neo4j) to enable agents to learn from interactions and improve over time[cite: 18, 38].
+The architecture is built on a robust, asynchronous Python framework using FastAPI. All inter-agent communication is facilitated by a central Model Context Protocol (MCP) Server that implements the JSON-RPC 2.0 protocol over both HTTP and WebSocket transport layers. A key feature is the adaptive memory architecture, which leverages a polyglot persistence strategy (PostgreSQL, Redis, Neo4j) to enable agents to learn from interactions and improve over time.
 
 -----
 
-### \#\# System Architecture
+## System Architecture
 
 The system follows a centralized, agent-based architecture where all data access and communication are brokered by the MCP Server. Agents interact with a unified Memory System, which abstracts the underlying polyglot database layer.
 
@@ -60,20 +52,20 @@ graph TD
 
 -----
 
-### \#\# Core Features
+## Core Features
 
-  * [cite\_start]**Multi-Agent System**: Features three specialized agents for Lead Triage, Engagement, and Campaign Optimization[cite: 15].
-  * [cite\_start]**Adaptive Memory**: A four-tiered memory system allows agents to learn from interactions[cite: 18].
-      * [cite\_start]**Short-Term (Redis)**: For fast, conversational context[cite: 38].
-      * [cite\_start]**Long-Term (PostgreSQL)**: For durable storage of customer history and preferences[cite: 38].
-      * [cite\_start]**Episodic & Semantic (Neo4j)**: For storing successful problem-resolution patterns and domain knowledge as a graph[cite: 38].
-  * [cite\_start]**Centralized API**: A single, secure MCP Server built with FastAPI manages all data access and communication using the JSON-RPC 2.0 protocol[cite: 29, 30].
-  * [cite\_start]**Asynchronous by Design**: Built entirely on Python's `asyncio` for high-concurrency and performance in I/O-bound tasks[cite: 63, 64, 65, 66].
-  * [cite\_start]**Production-Ready**: Designed for production with Kubernetes manifests, security protocols, and a robust testing and monitoring strategy[cite: 19].
+  * **Multi-Agent System**: Features three specialized agents for Lead Triage, Engagement, and Campaign Optimization.
+  * **Adaptive Memory**: A four-tiered memory system allows agents to learn from interactions.
+      * **Short-Term (Redis)**: For fast, conversational context.
+      * **Long-Term (PostgreSQL)**: For durable storage of customer history and preferences.
+      * **Episodic & Semantic (Neo4j)**: For storing successful problem-resolution patterns and domain knowledge as a graph.
+  * **Centralized API**: A single, secure MCP Server built with FastAPI manages all data access and communication using the JSON-RPC 2.0 protocol.
+  * **Asynchronous by Design**: Built entirely on Python's `asyncio` for high-concurrency and performance in I/O-bound tasks.
+  * **Production-Ready**: Designed for production with Kubernetes manifests, security protocols, and a robust testing and monitoring strategy.
 
 -----
 
-### \#\# Tech Stack
+## Tech Stack
 
   * **Backend**: Python 3.10+, FastAPI
   * **Databases**: PostgreSQL, Redis, Neo4j
@@ -84,7 +76,7 @@ graph TD
 
 -----
 
-### \#\# Setup and Installation
+## Setup and Installation
 
 Follow these steps to get the project running locally.
 
@@ -112,6 +104,7 @@ pip install -r requirements.txt
 ```
 
 **4. Install Project in Editable Mode**
+
 This step is crucial for making the `src` layout work correctly.
 
 ```bash
@@ -119,6 +112,7 @@ pip install -e .
 ```
 
 **5. Configure Environment Variables**
+
 Create a `.env` file in the project root by copying the example below. Fill in your actual credentials.
 
 ```env
@@ -144,6 +138,7 @@ SHORT_TERM_MEMORY_TTL=3600
 ```
 
 **6. Start External Services (Docker)**
+
 Make sure Docker is running, then start the required databases.
 
 ```bash
@@ -153,6 +148,7 @@ docker run -d --name redis -p 6379:6379 redis:7-alpine
 ```
 
 **7. Initialize the Database**
+
 Run the setup script to create the necessary tables and indexes.
 
 ```bash
@@ -161,9 +157,10 @@ python -m src.database.init_db
 
 -----
 
-### \#\# Usage
+## Usage
 
 **1. Start the MCP Server**
+
 Open a terminal and run the following command. Keep this server running.
 
 ```bash
@@ -171,6 +168,7 @@ python -m src.mcp.server
 ```
 
 **2. Run the Demo Workflow**
+
 In a new terminal, run the main demo script to see the agents in action.
 
 ```bash
@@ -178,6 +176,7 @@ python -m main
 ```
 
 **3. Run the Test Suite**
+
 To verify the entire system is working correctly, run the full test suite.
 
 ```bash
@@ -186,9 +185,9 @@ pytest
 
 -----
 
-### \#\# API
+## API
 
-[cite\_start]The system exposes a single JSON-RPC 2.0 endpoint at `/rpc`[cite: 78]. [cite\_start]All requests must include an API key in the `X-API-KEY` header[cite: 141].
+The system exposes a single JSON-RPC 2.0 endpoint at `/rpc`. All requests must include an API key in the `X-API-KEY` header.
 
 **Example Request (`curl`)**:
 
@@ -205,23 +204,27 @@ curl -X POST http://localhost:8000/rpc \
 ```
 
 ---
-### **Roadmap and Future Work**
+
+## Roadmap and Future Work
 
 This project provides a solid foundation, but several enhancements are planned to make it fully production-ready, based on the initial code review.
 
-#### **Immediate Priorities (Production Hardening)**
-* [cite_start]**Replace Simulated Logic**: The current `EngagementAgent` and `CampaignOptimizationAgent` use `random` to simulate outcomes and metrics[cite: 2]. The next step is to integrate with real-world APIs for email delivery (e.g., SendGrid) and analytics.
-* **Enhance Observability**: Implement structured logging across all agents and services. [cite_start]While a `/metrics` endpoint is planned [cite: 407, 419][cite_start], the code needs to be fully instrumented with the `prometheus-client` to track RPC latency and agent performance[cite: 406, 425].
-* **Improve Agent Intelligence**:
-    * [cite_start]Replace the simplistic, hard-coded scoring logic in the `LeadTriageAgent` with a configurable or ML-driven model[cite: 2].
-    * [cite_start]Upgrade the keyword-based matching in the `EpisodicMemory` to use vector embeddings and cosine similarity for more accurate results[cite: 2].
+### Immediate Priorities (Production Hardening)
 
-#### **Future Enhancements**
-* [cite_start]**Resilience**: Implement retry logic with exponential backoff in the `MCPClient` to handle transient network failures gracefully[cite: 2].
-* [cite_start]**Performance**: Address the potential race condition in `Short-TermMemory` by using Redis transactions or Lua scripting to ensure atomic operations[cite: 2].
-* [cite_start]**Load Testing**: Execute the planned load testing scenarios using Locust to validate system performance under a 10x load increase and ensure latency targets are met[cite: 381, 384].
+* **Replace Simulated Logic**: The current `EngagementAgent` and `CampaignOptimizationAgent` use `random` to simulate outcomes and metrics. The next step is to integrate with real-world APIs for email delivery (e.g., SendGrid) and analytics.
+* **Enhance Observability**: Implement structured logging across all agents and services. While a `/metrics` endpoint is planned, the code needs to be fully instrumented with the `prometheus-client` to track RPC latency and agent performance.
+* **Improve Agent Intelligence**:
+    * Replace the simplistic, hard-coded scoring logic in the `LeadTriageAgent` with a configurable or ML-driven model.
+    * Upgrade the keyword-based matching in the `EpisodicMemory` to use vector embeddings and cosine similarity for more accurate results.
+
+### Future Enhancements
+
+* **Resilience**: Implement retry logic with exponential backoff in the `MCPClient` to handle transient network failures gracefully.
+* **Performance**: Address the potential race condition in `Short-TermMemory` by using Redis transactions or Lua scripting to ensure atomic operations.
+* **Load Testing**: Execute the planned load testing scenarios using Locust to validate system performance under a 10x load increase and ensure latency targets are met.
 
 ---
-### License
+
+## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
